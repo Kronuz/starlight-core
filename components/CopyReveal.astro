@@ -1,0 +1,23 @@
+---
+// Copyright © 2026 Germán Méndez Bravo (Kronuz)
+---
+
+<script>
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element) || !window.matchMedia('(hover: none)').matches) return;
+
+    const code = target.closest<HTMLElement>('.expressive-code .frame pre, .snippet .snippet-code');
+    if (!code || target.closest('a, button')) return;
+
+    const frame = code.closest<HTMLElement>('.frame, .snippet');
+    if (!frame?.querySelector('.copy button, [data-snippet-copy]')) return;
+
+    const reveal = !frame.hasAttribute('data-copy-revealed');
+    document.querySelectorAll<HTMLElement>('[data-copy-revealed]').forEach((other) => {
+      other.removeAttribute('data-copy-revealed');
+      other.querySelector<HTMLButtonElement>('.copy button, [data-snippet-copy]')?.blur();
+    });
+    if (reveal) frame.setAttribute('data-copy-revealed', '');
+  });
+</script>
