@@ -1,0 +1,48 @@
+/* One footer layout for the blogs and documentation sites. */
+.kz-footer {
+flex-direction: column;
+gap: 1.5rem;
+}
+.kz-footer .meta {
+gap: 0.75rem 3rem;
+justify-content: space-between;
+flex-wrap: wrap;
+margin-top: 3rem;
+font-size: var(--sl-text-sm);
+color: var(--sl-color-gray-3);
+}
+.kz-footer .meta > p:only-child { margin-inline-start: auto; }
+/* On pages with no edit link / last-updated / pagination (the splash, About),
+   those subsections render empty. Drop them so they take no vertical space and
+   the copyright + social bar sit directly under the content. Content-based, so
+   real blog-post pagination is untouched. */
+.kz-footer .meta:not(:has(a)):not(:has(time)),
+.kz-footer .pagination-links:not(:has(a)) { display: none; }
+
+/* Copyright + social bar, now the last child inside <footer>. */
+.kz-site-footer {
+padding-top: 1rem;
+border-top: 1px solid var(--sl-color-gray-5);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.85rem;
+text-align: center;
+}
+.kz-copyright {
+margin: 0;
+font-size: var(--sl-text-sm);
+color: var(--sl-color-gray-3);
+}
+.kz-social {
+display: flex;
+gap: 1.15rem;
+}
+.kz-social-link {
+color: var(--sl-color-gray-3);
+display: inline-flex;
+transition: color 0.15s ease;
+}
+.kz-social-link:hover { color: var(--sl-color-white); }
+.kz-social-link svg { width: 1.25rem; height: 1.25rem; }
+

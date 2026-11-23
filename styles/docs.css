@@ -236,57 +236,6 @@ margin-bottom: 0.3rem;
 }
 .hero-cards .card p { margin-block: 0.3rem; }
 
-/* Site footer. We render our own single <footer> (src/components/Footer.astro)
-   inlining Starlight's edit-link / last-updated / pagination parts, so the
-   copyright + social bar live inside the same <footer>. Re-add the small bit of
-   layout the stock (scoped) footer styles used to provide. */
-.kz-footer {
-flex-direction: column;
-gap: 1.5rem;
-}
-.kz-footer .meta {
-gap: 0.75rem 3rem;
-justify-content: space-between;
-flex-wrap: wrap;
-margin-top: 3rem;
-font-size: var(--sl-text-sm);
-color: var(--sl-color-gray-3);
-}
-.kz-footer .meta > p:only-child { margin-inline-start: auto; }
-/* On pages with no edit link / last-updated / pagination (the splash, About),
-   those subsections render empty. Drop them so they take no vertical space and
-   the copyright + social bar sit directly under the content. Content-based, so
-   real blog-post pagination is untouched. */
-.kz-footer .meta:not(:has(a)):not(:has(time)),
-.kz-footer .pagination-links:not(:has(a)) { display: none; }
-
-/* Copyright + social bar, now the last child inside <footer>. */
-.kz-site-footer {
-padding-top: 1rem;
-border-top: 1px solid var(--sl-color-gray-5);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 0.85rem;
-text-align: center;
-}
-.kz-copyright {
-margin: 0;
-font-size: var(--sl-text-sm);
-color: var(--sl-color-gray-3);
-}
-.kz-social {
-display: flex;
-gap: 1.15rem;
-}
-.kz-social-link {
-color: var(--sl-color-gray-3);
-display: inline-flex;
-transition: color 0.15s ease;
-}
-.kz-social-link:hover { color: var(--sl-color-white); }
-.kz-social-link svg { width: 1.25rem; height: 1.25rem; }
-
 /* Source-code snippet viewer (```snippet fences + /snippets/view/<file>/). */
 .snippet {
 	margin: 1.25rem 0;
@@ -1548,8 +1497,7 @@ starlight-toc a[href='#_top'] {
    layouts that pushed every cell after the first down, so a row's first column sat
    higher than the rest. Reset it for the direct children so each row's tops line up. */
 .kz-features > *,
-.kz-qs-inner > *,
-.kz-home-footer-inner > * { margin-top: 0; }
+.kz-qs-inner > * { margin-top: 0; }
 .kz-feature p { margin: 0 0 0.6rem; font-size: 1.05rem; line-height: 1.45; color: var(--sl-color-gray-2); }
 .kz-feature a { color: var(--sl-color-text-accent); text-decoration: none; font-weight: 700; }
 .kz-feature a:hover { text-decoration: underline; }
@@ -1599,41 +1547,9 @@ starlight-toc a[href='#_top'] {
 .kz-os-panel .expressive-code { margin: -6rem 0; font-size: 1rem; }
 .kz-os-panel .expressive-code pre { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
 
-/* Full-bleed dark footer: copyright + "Website by Kronuz" (left), host credit
-   with the GitHub logo (right). Home-page only (own class so its full-bleed
-   width:100vw never leaks onto the site-wide <Footer> override, which also uses
-   a footer element). */
-.kz-home-footer {
-	color: #c0c0c0;
-	font-size: 1rem;
-	width: 100vw;
-	margin: 3.5rem calc(50% - 50vw) -3rem;
-	padding: 1.5rem 0;
-	text-shadow: none;
-	border-top: 1px solid #282828;
-}
-.kz-home-footer-inner {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 1rem;
-	max-width: 60rem;
-	margin: 0 auto;
-	padding: 0 1.5rem;
-	text-align: left;
-}
-.kz-home-footer p { margin: 0; }
-.kz-home-footer a { color: #c0c0c0; text-decoration: none; }
-.kz-home-footer a:hover { color: #fff; }
-.kz-home-footer img { vertical-align: middle; margin-left: 0.4rem; opacity: 0.8; transition: opacity 0.2s; }
-.kz-home-footer a:hover img { opacity: 1; }
-.kz-home-footer-right { text-align: right; }
-
 @media (max-width: 50rem) {
 	.kz-features { grid-template-columns: 1fr; }
 	.kz-qs-inner { grid-template-columns: 1fr; gap: 1rem; }
-	.kz-home-footer-inner { flex-direction: column; text-align: center; }
-	.kz-home-footer-right { text-align: center; }
 	.kz-intro { font-size: 2.2rem; }
 	.kz-lede { font-size: 1.35rem; }
 }
