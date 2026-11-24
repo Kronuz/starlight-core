@@ -7,7 +7,8 @@ repositories own content, navigation, branding, and deployment configuration.
 The blogs use `styles/blog.css`; the docs use `styles/docs.css`. All four sites
 load `styles/footer.css` and render `components/Footer.astro`. The footer keeps
 the public blog's centered copyright and social layout, with the GitHub hosting
-credit. A site can override copyright or social links through
+credit. It derives the credit's repository link from Starlight's edit-link
+base URL. A site can override copyright or social links through
 `Astro.locals.kzFooter`. Reading controls and Markdown plugins live once in
 this package. A change to a shared control is tested in all four sites before
 the package revision is updated there.

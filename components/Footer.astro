@@ -2,6 +2,7 @@
 import EditLink from 'virtual:starlight/components/EditLink';
 import LastUpdated from 'virtual:starlight/components/LastUpdated';
 import Pagination from 'virtual:starlight/components/Pagination';
+import config from 'virtual:starlight/user-config';
 import { Icon } from '@astrojs/starlight/components';
 
 type FooterConfig = {
@@ -24,6 +25,7 @@ const defaults = {
 };
 const options = { ...defaults, ...((Astro.locals as typeof Astro.locals & { kzFooter?: FooterConfig }).kzFooter ?? {}) };
 const copyright = options.copyright ?? `© ${new Date().getFullYear()} Germán Méndez Bravo`;
+const hostedHref = config.editLink.baseUrl?.match(/^https:\/\/github\.com\/[^/]+\/[^/]+/)?.[0] ?? 'https://github.com';
 ---
 
 <footer class="sl-flex kz-footer">
@@ -47,12 +49,13 @@ const copyright = options.copyright ?? `© ${new Date().getFullYear()} Germán M
 					</a>
 				)}
 			</div>}
-		<p class="kz-hosted">Proudly hosted by <a href="https://github.com" target="_blank" rel="noopener noreferrer"><Icon name="github" size="1em" /> GitHub</a></p>
+		<p class="kz-hosted">Proudly hosted by <a href={hostedHref} target="_blank" rel="noopener noreferrer"><Icon name="github" size="1em" /> GitHub</a></p>
 	</div>
 </footer>
 
 <style>
 	.kz-hosted { margin: 0; color: var(--sl-color-gray-3); font-size: var(--sl-text-xs); }
-	.kz-hosted a { color: inherit; display: inline-flex; align-items: center; gap: 0.2em; text-decoration: none; }
+	.kz-hosted a { color: inherit; white-space: nowrap; text-decoration: none; }
+	.kz-hosted a svg { vertical-align: -0.125em; margin-inline-end: 0.2em; }
 	.kz-hosted a:hover { color: var(--sl-color-text-accent); }
 </style>
